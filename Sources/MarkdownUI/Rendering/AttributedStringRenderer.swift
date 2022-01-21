@@ -495,6 +495,7 @@ extension AttributedStringRenderer {
     result.setParagraphStyle(.default)
     result.baseWritingDirection = baseWritingDirection
     result.alignment = alignment
+    result.lineSpacing = 4
     result.paragraphSpacing = round(pointSize * state.paragraphSpacing)
     result.headIndent = round(pointSize * state.headIndent)
     result.tailIndent = round(pointSize * state.tailIndent)

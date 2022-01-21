@@ -431,7 +431,7 @@ extension AttributedStringRenderer {
   }
 
   private func renderSoftBreak(state: State) -> NSAttributedString {
-    renderText(" ", state: state)
+    renderText(.lineSeparator, state: state)
   }
 
   private func renderLineBreak(state: State) -> NSAttributedString {

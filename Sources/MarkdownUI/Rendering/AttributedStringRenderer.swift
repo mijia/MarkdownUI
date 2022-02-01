@@ -454,7 +454,7 @@ extension AttributedStringRenderer {
   private func renderEmphasis(_ emphasis: Emphasis, state: State) -> NSAttributedString {
     var state = state
     state.font = state.font.italic()
-    state.backgroundColor = MarkdownStyle.Color.yellow
+    state.backgroundColor = MarkdownStyle.Color.yellow.opacity(0.2)
     return renderInlines(emphasis.children, state: state)
   }
 

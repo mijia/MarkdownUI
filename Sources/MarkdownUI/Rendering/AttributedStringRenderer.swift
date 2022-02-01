@@ -5,6 +5,7 @@ struct AttributedStringRenderer {
   struct State {
     var font: MarkdownStyle.Font
     var foregroundColor: MarkdownStyle.Color
+    var backgroundColor: MarkdownStyle.Color?
     var paragraphSpacing: CGFloat
     var headIndent: CGFloat = 0
     var tailIndent: CGFloat = 0
@@ -421,12 +422,17 @@ extension AttributedStringRenderer {
   }
 
   private func renderText(_ text: String, state: State) -> NSAttributedString {
+    var attributes = [
+        NSAttributedString.Key.font: state.font.resolve(),
+        NSAttributedString.Key.foregroundColor: state.foregroundColor.platformColor!,
+    ]
+    if let bgColor = state.backgroundColor {
+      attributes[NSAttributedString.Key.backgroundColor] = bgColor.platformColor!
+    }        
+        
     NSAttributedString(
       string: text,
-      attributes: [
-        .font: state.font.resolve(),
-        .foregroundColor: state.foregroundColor.platformColor!,
-      ]
+      attributes: attributes
     )
   }
 
@@ -451,6 +457,7 @@ extension AttributedStringRenderer {
   private func renderEmphasis(_ emphasis: Emphasis, state: State) -> NSAttributedString {
     var state = state
     state.font = state.font.italic()
+    state.backgroundColor = MarkdownStyle.Color.yellow
     return renderInlines(emphasis.children, state: state)
   }
 

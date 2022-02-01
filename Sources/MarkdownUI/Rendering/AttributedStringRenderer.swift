@@ -430,10 +430,7 @@ extension AttributedStringRenderer {
       attributes[NSAttributedString.Key.backgroundColor] = bgColor.platformColor!
     }        
         
-    NSAttributedString(
-      string: text,
-      attributes: attributes
-    )
+    return NSAttributedString(string: text, attributes: attributes)
   }
 
   private func renderSoftBreak(state: State) -> NSAttributedString {
